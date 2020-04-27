@@ -6,49 +6,76 @@ class ListNode {
 }
 
 class LinkedList {
-    constructor(head) {
-        this.head = head;
+    constructor() {
+        this.head = null;
     }
 
-    read(linkedList) {
+    read(list) {
+        constructor();
+
+        if(list.length === 0) {
+            return this.head;
+        }
+
+        this.head = new ListNode(list[0]);
+
+        let currentNode = this.head;
+        let nextNode = null;
+
+        for(let i=0; i < list.length; i++) {
+            if(i + 1 < list.length) {
+                nextNode = new ListNode(list[i+1]);
+            }
+            currentNode.next = nextNode;
+
+            currentNode = currentNode.next;
+            nextNode = null;
+        }
+
+        return this;
     }
 
     print() {
-        let currentNode = head;
+        let currentNode = this.head;
         const result = [];
 
-        while(currentNode != null) {
+        while(currentNode !== null) {
             result.push(currentNode.value);
+            currentNode = currentNode.next;
         }
 
-        return result.join(' -> ');
+        const resultString =  result.join(' -> ');
+        console.log(resultString);
+        return resultString;
     }
 
     insert(data) {
         if(this.head === null) {
             this.head = new ListNode(data);
 
-            return this.head;
+            return this;
         }
 
-        let lastNode = head;
+        let lastNode = this.head;
+        let lastNonNullNode = null;
 
         while(lastNode != null) {
+            lastNonNullNode = lastNode;
             lastNode = lastNode.next;
         }
 
-        lastNode.next = new ListNode(data);
+        lastNonNullNode.next = new ListNode(data);
 
-        return this.head;
+        return this;
     }
 
     deleteByKey(key) {
-        if(this.head === null) return this.head;
+        if(this.head === null) return this;
 
         if(this.head.value === key) {
             this.head = this.head.next;
             
-            return this.head;
+            return this;
         }
 
         let currentNode = this.head;
@@ -60,9 +87,12 @@ class LinkedList {
                 currentNode = currentNode.next;
             } else {
                 previousNode.next = currentNode.next;
+                currentNode = currentNode.next;
             }
         }
 
-        return this.head;
+        return this;
     }
 }
+
+exports.LinkedList = LinkedList;
