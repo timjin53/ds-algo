@@ -57,14 +57,12 @@ class LinkedList {
         }
 
         let lastNode = this.head;
-        let lastNonNullNode = null;
 
-        while(lastNode != null) {
-            lastNonNullNode = lastNode;
+        while(lastNode.next != null) {
             lastNode = lastNode.next;
         }
 
-        lastNonNullNode.next = new ListNode(data);
+        lastNode.next = new ListNode(data);
 
         return this;
     }
