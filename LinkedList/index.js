@@ -10,6 +10,9 @@ linkedList.print();
 linkedList.insert(4).insert(5);
 linkedList.print();
 
+linkedList.reverse();
+linkedList.print();
+
 linkedList.deleteByKey(3);
 linkedList.print();
 

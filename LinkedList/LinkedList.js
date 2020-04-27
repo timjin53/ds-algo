@@ -91,6 +91,27 @@ class LinkedList {
 
         return this;
     }
+
+    reverse() {
+        let previousNode = null;
+        let currentNode = this.head;
+        let nextNode = null;
+
+        while(currentNode !== null) {
+            nextNode = currentNode.next;
+            currentNode.next = previousNode;
+            previousNode = currentNode;
+            currentNode = nextNode
+        }
+
+        this.head = previousNode;
+
+        return this;
+    }
+
+    copy() {
+        return new LinkedList();
+    }
 }
 
 exports.LinkedList = LinkedList;
