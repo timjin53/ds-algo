@@ -10,6 +10,9 @@ linkedList.print();
 linkedList.insert(4).insert(5);
 linkedList.print();
 
+const newLinkedList = linkedList.deepCopy()
+newLinkedList.print();
+
 linkedList.reverse();
 linkedList.print();
 
@@ -21,3 +24,5 @@ linkedList.print();
 
 linkedList.deleteByKey(5);
 linkedList.print();
+
+

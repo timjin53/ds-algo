@@ -109,8 +109,23 @@ class LinkedList {
         return this;
     }
 
-    copy() {
-        return new LinkedList();
+    deepCopy() {
+        const newLinkedList = new LinkedList();
+
+        if(this.head === null) return newLinkedList;
+
+        let currentNode = this.head;
+        let currentCopy = new ListNode(currentNode.value);
+
+        newLinkedList.head = currentCopy;
+
+        while(currentNode.next !== null) {
+            currentCopy.next = new ListNode(currentNode.next.value);
+            currentNode = currentNode.next;
+            currentCopy = currentCopy.next;
+        }
+
+        return newLinkedList;
     }
 }
 
