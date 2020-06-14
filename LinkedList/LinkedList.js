@@ -130,3 +130,5 @@ class LinkedList {
 }
 
 exports.LinkedList = LinkedList;
+exports.ListNode = ListNode;
+
