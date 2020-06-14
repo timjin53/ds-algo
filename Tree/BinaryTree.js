@@ -54,7 +54,44 @@ const binrayTreeString = "1,2,3,#,#,4,#,5,6";
 
 const testRoot = deserializeBinaryTree(binrayTreeString);
 
-console.log(testRoot);
-console.log(testRoot.left);
-console.log(testRoot.right);
-console.log(testRoot.right.left);
+// console.log(testRoot);
+// console.log(testRoot.left);
+// console.log(testRoot.right);
+// console.log(testRoot.right.left);
+
+/**
+ * Encodes binary tree into a string.
+ *
+ * @param {TreeNode} root
+ * @return {string}
+ */
+const serializeBinaryTree = root => {
+    if (root === null) return '';
+
+    const treeNodeQueue = [root];
+    const resultArray = [root.value];
+
+    while(treeNodeQueue.length > 0) {
+        const currentNode = treeNodeQueue.shift();
+        const left = currentNode.left;
+        const right = currentNode.right;
+
+        if(currentNode.left === null) {
+            resultArray.push("#");
+        } else {
+            resultArray.push(left.value);
+            treeNodeQueue.push(left);
+        }
+
+        if(currentNode.right === null) {
+            resultArray.push("#");
+        } else {
+            resultArray.push(right.value);
+            treeNodeQueue.push(right);
+        }
+    }
+
+    return resultArray.join(",");
+}
+
+console.log(serializeBinaryTree(testRoot));
